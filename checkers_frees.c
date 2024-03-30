@@ -42,7 +42,7 @@ int	checker(char **args)
 	int	n;
 	int	i;
 
-	n = 1;
+	n = 0;
 	while (args[n])
 	{
 		i = 0;
@@ -64,19 +64,23 @@ int	checker(char **args)
 int	checker_double(char **args)
 {
 	int	n;
-	int	currentnumber;
+	int	length;
+	int	current_number;
 	int	j;
 
-	n = 1;
+	n = 0;
+	length = 0;
+	while (args[length])
+		length++;
 	while (args[n])
 	{
-		currentnumber = ft_atoi(args[n]);
-		j = n - 1;
-		while (j > 0)
+		current_number = ft_atoi(args[n]);
+		j = n + 1;
+		while (j < length)
 		{
-			if (currentnumber == ft_atoi(args[j]))
+			if (current_number == ft_atoi(args[j]))
 				return (1);
-			j--;
+			j++;
 		}
 		n++;
 	}

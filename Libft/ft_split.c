@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtelek <mtelek@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 23:48:42 by mtelek            #+#    #+#             */
-/*   Updated: 2024/03/23 19:26:29 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/30 20:43:31 by mtelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,13 @@ static int	split_1(char const *s, char **split, char c)
 			start = i;
 			while (s[i] && s[i] != c)
 				i++;
-			split[j++] = ft_substr(s, start, i - start);
-			if (split[j - 1] == NULL)
+			split[j] = ft_substr(s, start, i - start);
+			if (!split[j])
 			{
 				free_split(split);
 				return (0);
 			}
+			j++;
 		}
 	}
 	return (1);
@@ -82,7 +83,10 @@ char	**ft_split(char const *s, char c)
 	word_count = count_words(s, c);
 	split = (char **)malloc((word_count + 1) * sizeof(char *));
 	if (!split)
-		return (NULL);
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	if (split_1(s, split, c))
 		split[word_count] = NULL;
 	else

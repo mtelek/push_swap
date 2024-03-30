@@ -47,16 +47,18 @@ void	argc_check(t_list **stack_a, t_list **stack_b, int argc)
 	}
 }
 
-void	stack_making(t_list **stack_a, t_list **stack_b, char **args, int i)
+void	stack_making(t_list **stack_a, t_list **stack_b, char **args)
 {
 	t_list	*temp_a;
 	t_list	*last;
+	int		i;
 
+	i = 0;
 	while (args[i])
 	{
 		temp_a = (t_list *)malloc(sizeof(t_list));
 		if (!temp_a)
-			handle_error("Error");
+			handle_failure(args);
 		temp_a->value = ft_atoi(args[i]);
 		temp_a->next = NULL;
 		if (*stack_a == NULL)
@@ -77,15 +79,29 @@ void	stack_making(t_list **stack_a, t_list **stack_b, char **args, int i)
 char	**getting_args(int argc, char **argv)
 {
 	char	**args;
+	int		i;
 
+	i = 0;
 	if (argc == 2)
 	{
 		args = ft_split(argv[1], ' ');
 		if (!args)
-			handle_error("Error");
+			handle_failure(args);
 	}
 	else
-		args = argv;
+	{
+		args = (char **)malloc((argc) * sizeof(char *));
+		if (!args)
+			handle_error();
+		while (argc > i && argv[i + 1])
+		{
+			args[i] = ft_strdup(argv[i + 1]);
+			if (!args[i])
+				handle_failure(args);
+			i++;
+		}
+		args[argc - 1] = NULL;
+	}
 	return (args);
 }
 
@@ -94,25 +110,22 @@ int	main(int argc, char **argv)
 	t_list	*stack_a;
 	t_list	*stack_b;
 	char	**args;
-	int		counter;
 
 	stack_a = NULL;
-	counter = 1;
 	if (argc >= 2)
 	{
 		args = getting_args(argc, argv);
-		if (argc == 2)
-			counter = 0;
 		if (checker(args) || checker_mini_max(args) || checker_double(args))
-			handle_error("Error");
-		stack_making(&stack_a, &stack_b, args, counter);
+			handle_failure(args);
+		stack_making(&stack_a, &stack_b, args);
 		argc = argc_maker(&stack_a);
 		if (!stack_sorted(stack_a))
 			argc_check(&stack_a, &stack_b, argc);
+		if (argc > 2)
+			print_stack(stack_a, "Sorted stack");
 		free_list(stack_a);
 		free_list(stack_b);
-		if (!counter)
-			free_args(args);
+		free_args(args);
 	}
 	return (0);
 }

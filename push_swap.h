@@ -55,10 +55,12 @@ long long int	ft_atoll(const char *str);
 int				checker(char **args);
 int				checker_mini_max(char **args);
 int				checker_double(char **args);
-void			handle_error(char *text);
+void			handle_error(void);
+void			handle_failure(char **args);
 void			free_list(t_list *stack);
 void			free_args(char **args);
 int				argc_maker(t_list **stack_a);
+void			print_stack(t_list *stack, const char *text);
 
 //FOR THE ALGORITHM
 void			set_current_position(t_list *stack);

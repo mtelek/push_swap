@@ -12,10 +12,36 @@
 
 #include "push_swap.h"
 
-void	handle_error(char *text)
+void	handle_failure(char **args)
 {
-	ft_printf("%s\n", text);
+	int	i;
+
+	i = 0;
+	while (args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
+	ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
+}
+
+void	handle_error(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	exit(EXIT_FAILURE);
+}
+
+void	print_stack(t_list *stack, const char *text)
+{
+	ft_printf("%s: ", text);
+	while (stack != NULL)
+	{
+		ft_printf("%d ", stack->value);
+		stack = stack->next;
+	}
+	ft_printf("\n");
 }
 
 long long int	parse_integer(const char *str, int sign)

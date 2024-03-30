@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   switch_push.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtelek <mtelek@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:31:18 by mtelek            #+#    #+#             */
-/*   Updated: 2024/03/23 21:38:09 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/30 21:05:07 by mtelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	pa(t_list **stack_a, t_list **stack_b)
 			return ;
 		temp = malloc(sizeof(t_list));
 		if (!temp)
-			handle_error("Error");
+			handle_error();
 		temp->value = head_b->value;
 		temp->cheapest = false;
 		temp->next = head_a;
@@ -92,7 +92,7 @@ void	pb(t_list **stack_a, t_list **stack_b)
 			return ;
 		temp = malloc(sizeof(t_list));
 		if (!temp)
-			handle_error("Error");
+			handle_error();
 		temp->value = head_a->value;
 		temp->cheapest = false;
 		temp->next = head_b;
