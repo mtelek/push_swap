@@ -1,0 +1,53 @@
+# Object files and directories
+*.o
+*.a
+*.d
+objs/
+.objs/
+
+# Executables
+push_swap
+checker
+
+# Libraries
+Libft/
+ft_printf/
+
+# Build system
+*.swp
+*.swo
+*.swn
+*.dSYM/
+*.out
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*~
+*.orig
+
+# macOS
+.DS_Store
+._*
+
+# Test files
+*.test
+*.log
+
+# Temporary files
+temp/
+tmp/
+
+# Personal files
+*.pdf
+*.doc
+*.docx
+
+# AddressSanitizer output
+*.asan.*
+
+# Visualizer files
+visualizer
+*.bmp
+*.png
