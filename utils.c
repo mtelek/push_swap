@@ -23,13 +23,13 @@ void	handle_failure(char **args)
 		i++;
 	}
 	free(args);
-	ft_putstr_fd("Error\n", 2);
+	ft_putendl_fd("Error", STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
 void	handle_error(void)
 {
-	ft_putstr_fd("Error\n", 2);
+	ft_putendl_fd("Error", STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
