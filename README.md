@@ -62,14 +62,14 @@ ARG="3 1 4 2 5"; ./push_swap $ARG | ./checker_OS $ARG
 ```
 
 ### Expected Outputs:
-OK - If the operations correctly sort the stack
-KO - If the operations don't sort the stack
+OK - If the operations correctly sort the stack  
+KO - If the operations don't sort the stack  
 Error - If there are invalid operations or input errors (printed to stderr)
 
 ## Visualizer
 The sorting can be visualized using the [Visualizer](https://github.com/o-reo/push_swap_visualizer) created by [o-reo](https://github.com/o-reo)
 
 ## Automated Testing
-For comprehensive testing, two tests are currently available 
-[the Push_swap_tester](https://github.com/LeoFu9487/push_swap_tester) created by [LeoFu9487](https://github.com/LeoFu9487)
-[Push-Swap-Tester](https://github.com/gemartin99/Push-Swap-Tester) created by [gemartin99](https://github.com/gemartin99)
+For comprehensive testing, two tests are currently available  
+[the Push_swap_tester](https://github.com/LeoFu9487/push_swap_tester) created by [LeoFu9487](https://github.com/LeoFu9487)  
+[Push-Swap-Tester](https://github.com/gemartin99/Push-Swap-Tester) created by [gemartin99](https://github.com/gemartin99)  
