@@ -8,7 +8,7 @@ The Push Swap project is an algorithmic challenge where the goal is to sort a st
 - Validates input for errors (e.g., non-integer values, duplicates).
 - Aims to sort 100 numbers in under 700 operations and 500 numbers in under 5500 operations for full validation.
 
-## Push_swap Operations
+## Operations
 
 | Operation | Description |
 |-----------|-------------|
@@ -52,7 +52,7 @@ Run the push_swap program with a list of integers as arguments
 ```
 The program outputs the optimal sequence of operations to sort the stack, followed by the final sorted stack for verification.
 
-## Output Checker
+## 🧮 Output Checker
 
 The project includes a checker program to verify that the push_swap operations correctly sort the stack. The checker reads operations from stdin and validates the result.
 
@@ -66,10 +66,10 @@ OK - If the operations correctly sort the stack
 KO - If the operations don't sort the stack  
 Error - If there are invalid operations or input errors (printed to stderr)
 
-## Visualizer
+## 🌈 Visualizer
 The sorting can be visualized using the [Visualizer](https://github.com/o-reo/push_swap_visualizer) created by [o-reo](https://github.com/o-reo)
 
-## Automated Testing
+## 🧪 Automated Testing
 For comprehensive testing, two tests are currently available  
 [the Push_swap_tester](https://github.com/LeoFu9487/push_swap_tester) created by [LeoFu9487](https://github.com/LeoFu9487)  
 [Push-Swap-Tester](https://github.com/gemartin99/Push-Swap-Tester) created by [gemartin99](https://github.com/gemartin99)  
