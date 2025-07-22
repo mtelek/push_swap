@@ -110,7 +110,9 @@ int	main(int argc, char **argv)
 	t_list	*stack_a;
 	t_list	*stack_b;
 	char	**args;
+	int		verbose;
 
+	verbose = isatty(STDOUT_FILENO);
 	stack_a = NULL;
 	if (argc >= 2)
 	{
@@ -121,7 +123,7 @@ int	main(int argc, char **argv)
 		argc = argc_maker(&stack_a);
 		if (!stack_sorted(stack_a))
 			argc_check(&stack_a, &stack_b, argc);
-		if (argc > 2)
+		if (verbose && argc > 2)
 			print_stack(stack_a, "Sorted stack");
 		free_list(stack_a);
 		free_list(stack_b);

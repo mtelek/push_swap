@@ -8,6 +8,22 @@ The Push Swap project is an algorithmic challenge where the goal is to sort a st
 - Validates input for errors (e.g., non-integer values, duplicates).
 - Aims to sort 100 numbers in under 700 operations and 500 numbers in under 5500 operations for full validation.
 
+## Push_swap Operations
+
+| Operation | Description |
+|-----------|-------------|
+| sa        | Swap the first two elements of stack a |
+| sb        | Swap the first two elements of stack b |
+| ss        | Perform sa and sb simultaneously |
+| pa        | Push the first element of stack b to stack a |
+| pb        | Push the first element of stack a to stack b |
+| ra        | Rotate stack a (shift all elements up by 1, first becomes last) |
+| rb        | Rotate stack b (shift all elements up by 1, first becomes last) |
+| rr        | Perform ra and rb simultaneously |
+| rra       | Reverse rotate stack a (shift all elements down by 1, last becomes first) |
+| rrb       | Reverse rotate stack b (shift all elements down by 1, last becomes first) |
+| rrr       | Perform rra and rrb simultaneously |
+
 ## 🛠 Installation and Compilation
 
 ### Prerequisites
@@ -36,11 +52,24 @@ Run the push_swap program with a list of integers as arguments
 ```
 The program outputs the optimal sequence of operations to sort the stack, followed by the final sorted stack for verification.
 
-### Output checker
-(Here comes the checker)
+## Output Checker
+
+The project includes a checker program to verify that the push_swap operations correctly sort the stack. The checker reads operations from stdin and validates the result.
+
+### Basic Usage
+```bash
+ARG="3 1 4 2 5"; ./push_swap $ARG | ./checker_OS $ARG
+```
+
+### Expected Outputs:
+OK - If the operations correctly sort the stack
+KO - If the operations don't sort the stack
+Error - If there are invalid operations or input errors (printed to stderr)
 
 ## Visualizer
 The sorting can be visualized using the [Visualizer](https://github.com/o-reo/push_swap_visualizer) created by [o-reo](https://github.com/o-reo)
 
 ## Automated Testing
-For a comprehensive testing, [the Push_swap_tester](https://github.com/LeoFu9487/push_swap_tester) created by [LeoFu9487](https://github.com/LeoFu9487)
+For comprehensive testing, two tests are currently available 
+[the Push_swap_tester](https://github.com/LeoFu9487/push_swap_tester) created by [LeoFu9487](https://github.com/LeoFu9487)
+[Push-Swap-Tester](https://github.com/gemartin99/Push-Swap-Tester) created by [gemartin99](https://github.com/gemartin99)
