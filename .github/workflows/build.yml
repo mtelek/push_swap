@@ -1,0 +1,78 @@
+name: push_swap CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc make
+
+    - name: Compile project
+      run: |
+        make re
+        [ -f "push_swap" ] || (echo "push_swap compilation failed" && exit 1)
+        [ -f "checker" ] || (echo "checker compilation failed" && exit 1)
+
+    - name: Run basic tests
+      run: |
+        # Test with no arguments
+        ./push_swap | wc -l | grep -q "^0$" || (echo "FAIL: Empty input should return nothing" && exit 1)
+        
+        # Test with already sorted input
+        ./push_swap 1 2 3 | wc -l | grep -q "^0$" || (echo "FAIL: Sorted input should return nothing" && exit 1)
+        
+        # Test with invalid input
+        ./push_swap 1 2 a 2>&1 | grep -q "Error" || (echo "FAIL: Should detect invalid arguments" && exit 1)
+        
+        # Test with duplicates
+        ./push_swap 1 2 2 3 2>&1 | grep -q "Error" || (echo "FAIL: Should detect duplicates" && exit 1)
+
+    - name: Run sorting tests
+      run: |
+        mkdir -p test_results
+        # Test small lists
+        for i in {1..5}; do
+          ARGS=$(shuf -i 1-500 -n $i | tr '\n' ' ')
+          ./push_swap $ARGS | ./checker $ARGS | grep -q "OK" || (echo "FAIL: $i elements" && exit 1)
+          ./push_swap $ARGS | wc -l >> test_results/small_lists.txt
+        done
+        
+        # Test medium list (100 numbers)
+        ARGS=$(shuf -i 1-500 -n 100 | tr '\n' ' ')
+        ./push_swap $ARGS | ./checker $ARGS | grep -q "OK" || (echo "FAIL: 100 elements" && exit 1)
+        ./push_swap $ARGS | wc -l >> test_results/medium_list.txt
+        
+        # Test large list (500 numbers)
+        ARGS=$(shuf -i 1-1000 -n 500 | tr '\n' ' ')
+        ./push_swap $ARGS | ./checker $ARGS | grep -q "OK" || (echo "FAIL: 500 elements" && exit 1)
+        ./push_swap $ARGS | wc -l >> test_results/large_list.txt
+
+    - name: Display operation counts
+      run: |
+        echo "=== Operation Counts ==="
+        echo "Small lists (1-5 elements):"
+        cat test_results/small_lists.txt
+        echo -e "\nMedium list (100 elements):"
+        cat test_results/medium_list.txt
+        echo -e "\nLarge list (500 elements):"
+        cat test_results/large_list.txt
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: test_results/
+        retention-days: 1
+        
