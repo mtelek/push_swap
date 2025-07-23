@@ -40,6 +40,7 @@ jobs:
     - name: Run sorting tests
       run: |
         mkdir -p test_results
+        chmod +x checker_linux
         # Test small lists
         for i in {1..5}; do
           ARGS=$(shuf -i 1-500 -n $i | tr '\n' ' ')
