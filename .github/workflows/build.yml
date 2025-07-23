@@ -41,20 +41,20 @@ jobs:
       run: |
         mkdir -p test_results
         # Test small lists
-        for i in {2..5}; do
+        for i in {1..5}; do
           ARGS=$(shuf -i 1-500 -n $i | tr '\n' ' ')
-          ./push_swap $ARGS | ./checker $ARGS | grep -q "OK" || (echo "FAIL: $i elements" && exit 1)
+          ./push_swap $ARGS | ./checker_linux $ARGS | grep -q "OK" || (echo "FAIL: $i elements" && exit 1)
           ./push_swap $ARGS | wc -l >> test_results/small_lists.txt
         done
         
         # Test medium list (100 numbers)
         ARGS=$(shuf -i 1-500 -n 100 | tr '\n' ' ')
-        ./push_swap $ARGS | ./checker $ARGS | grep -q "OK" || (echo "FAIL: 100 elements" && exit 1)
+        ./push_swap $ARGS | ./checker_linux $ARGS | grep -q "OK" || (echo "FAIL: 100 elements" && exit 1)
         ./push_swap $ARGS | wc -l >> test_results/medium_list.txt
         
         # Test large list (500 numbers)
         ARGS=$(shuf -i 1-1000 -n 500 | tr '\n' ' ')
-        ./push_swap $ARGS | ./checker $ARGS | grep -q "OK" || (echo "FAIL: 500 elements" && exit 1)
+        ./push_swap $ARGS | ./checker_linux $ARGS | grep -q "OK" || (echo "FAIL: 500 elements" && exit 1)
         ./push_swap $ARGS | wc -l >> test_results/large_list.txt
 
     - name: Display operation counts
