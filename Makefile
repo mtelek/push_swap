@@ -11,7 +11,7 @@ endif
 
 SRCS_DIR = srcs
 OBJS_DIR = .objs
-INCLUDES = -Iincludes
+INCLUDES = -Iincludes -Ilibft -Ift_printf
 
 LIBFT     = Libft/libft.a
 LIBFTPRINTF = ft_printf/libftprintf.a
