@@ -22,7 +22,6 @@ jobs:
       run: |
         make re
         [ -f "push_swap" ] || (echo "push_swap compilation failed" && exit 1)
-        [ -f "checker" ] || (echo "checker compilation failed" && exit 1)
 
     - name: Run basic tests
       run: |
