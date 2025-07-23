@@ -1,4 +1,7 @@
 # Push_swap
+[![Build Status](https://github.com/mtelek/push_swap/actions/workflows/build.yml/badge.svg?cache_buster=1)](https://github.com/mtelek/push_swap/actions)
+[![Code Size](https://img.shields.io/github/languages/code-size/mtelek/push_swap?style=flat-square)](https://github.com/mtelek/push_swap)
+![Project Score](https://img.shields.io/badge/Push_swap-95%25-brightgreen)
 
 ## 📖 Project Description
 The Push Swap project is an algorithmic challenge where the goal is to sort a stack of integers using a limited set of instructions and two stacks (named a and b). The project requires writing a C program called push_swap that calculates and displays the shortest sequence of operations to sort the stack in ascending order. The challenge lies in optimizing the number of operations to meet strict performance benchmarks.

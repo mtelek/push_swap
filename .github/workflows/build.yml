@@ -1,4 +1,4 @@
-name: push_swap CI
+name: Push_swap CI
 
 on:
   push:
@@ -75,4 +75,3 @@ jobs:
         name: test-results
         path: test_results/
         retention-days: 1
-        
